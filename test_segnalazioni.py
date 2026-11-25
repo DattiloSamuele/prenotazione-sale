@@ -20,5 +20,16 @@ class TestSegnalazioneOrari(unittest.TestCase):
         self.assertEqual(identificativo, 2)
 
 
+class TestSegnalazioneCapienza(unittest.TestCase):
+    def test_sala_accetta_la_capienza_massima(self):
+        agenda = Agenda()
+        agenda.aggiungi_sala(Sala("R1", "Sala riunioni", 10))
+        prenotazione = Prenotazione("R1", MARTEDI, "09:00", "10:00", "Rossi", 10)
+
+        identificativo = agenda.prenota(prenotazione, oggi=OGGI)
+
+        self.assertEqual(identificativo, 1)
+
+
 if __name__ == "__main__":
     unittest.main()
